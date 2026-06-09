@@ -30,6 +30,38 @@
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-body: "Josefin Sans", sans-serif;
   --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+   
+    --black:        #080808;
+      --black-soft:   #0f0f0f;
+      --black-card_menu:   #131313;
+      --black-lift:   #1a1a1a;
+      --black-border: #232323;
+
+      --ember-core:   #e85d04;
+      --ember-hot:    #f48c06;
+      --ember-bright: #ffba08;
+      --ember-deep:   #9d0208;
+      --ember-dim:    #6a2a00;
+
+      --text-primary:   #f0ebe3;
+      --text-secondary: #a89c8c;
+      --text-muted:     #5a534a;
+
+      --glow-sm:  0 0 12px rgba(232, 93, 4, 0.35);
+      --glow-md:  0 0 28px rgba(232, 93, 4, 0.45);
+      --glow-lg:  0 0 60px rgba(232, 93, 4, 0.30);
+      --glow-red: 0 0 20px rgba(157, 2, 8, 0.5);
+
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+
+    
+
+      --basket-width: 320px;
+    
+   
 }
 
 /* Reset & Base  */
@@ -1210,6 +1242,1011 @@ footer {
   }
 }
 
+
+
+
+
+  
+    /* 
+       PAGE WRAPPER
+     */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1440px;
+      margin: 0 auto;
+
+    }
+
+  
+
+   
+    .noble-strip {
+      padding: 48px 40px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+  
+    .noble-title {
+      font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 600;
+ 
+  line-height: 1.05;
+      color: var(--text-primary);
+    }
+    .noble-title span {
+      color: var(--ember-core);
+      text-shadow: var(--glow-sm);
+    }
+    .noble-sub {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--text-secondary);
+      margin-top: 12px;
+      letter-spacing: 0.04em;
+    }
+    .noble-divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--ember-core), var(--ember-hot));
+      margin-top: 20px;
+      border-radius: 2px;
+      box-shadow: var(--glow-sm);
+    }
+
+   
+    .ordering-layout {
+      display: grid;
+      grid-template-columns: 1fr var(--basket-width);
+      gap: 0;
+      align-items: start;
+      padding: 0 40px 80px;
+      position: relative;
+    }
+
+   
+    .menu-column {
+      padding-right: 32px;
+      padding-left: 1px;
+      padding-top: 1px;
+      min-width: 0;
+    }
+
+  
+    .tab-input { display: none; }
+
+    .tabs-wrapper {
+      position: sticky;
+      top: 73px;
+      z-index: 50;
+      background: rgba(8, 8, 8, 0.92);
+      backdrop-filter: blur(16px);
+      padding: 16px 0 0;
+      margin-bottom: 32px;
+    }
+    .tabs-wrapper::after {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, var(--ember-deep), var(--ember-core), transparent);
+      opacity: 0.4;
+      margin-top: 0;
+    }
+
+    .tabs-nav {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-bottom: 0;
+    }
+
+    .tab-label {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      border: 1px solid transparent;
+      border-bottom: none;
+      transition: color var(--transition), background var(--transition), border-color var(--transition);
+      user-select: none;
+      white-space: nowrap;
+    }
+    .tab-label:hover {
+      color: var(--ember-hot);
+      background: rgba(232, 93, 4, 0.06);
+    }
+
+ 
+    #tab-local:checked  ~ .tabs-wrapper .tab-label[for="tab-local"],
+    #tab-brit:checked   ~ .tabs-wrapper .tab-label[for="tab-brit"],
+    #tab-grilled:checked~ .tabs-wrapper .tab-label[for="tab-grilled"],
+    #tab-desserts:checked~.tabs-wrapper .tab-label[for="tab-desserts"] {
+      color: var(--ember-bright);
+      background: rgba(232, 93, 4, 0.12);
+      border-color: var(--ember-dim);
+      border-bottom-color: var(--black);
+      text-shadow: 0 0 10px rgba(255, 186, 8, 0.4);
+    }
+
+ 
+    .menu-xection { display: none; }
+
+    #tab-local:checked   ~ .ordering-layout .menu-column .menu-xection[data-cat="local"],
+    #tab-brit:checked    ~ .ordering-layout .menu-column .menu-xection[data-cat="brit"],
+    #tab-grilled:checked ~ .ordering-layout .menu-column .menu-xection[data-cat="grilled"],
+    #tab-desserts:checked~ .ordering-layout .menu-column .menu-xection[data-cat="desserts"] {
+      display: block;
+      animation: sectionFadeIn 1s ease forwards;
+    }
+
+    @keyframes sectionFadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      letter-spacing: 0.15em;
+      color: var(--ember-core);
+      margin-bottom: 6px;
+      text-shadow: var(--glow-sm);
+    }
+    .section-desc {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      letter-spacing: 0.03em;
+    }
+
+  
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+ 
+    .food-card_menu {
+      background: var(--black-card_menu);
+      border: 1px solid var(--black-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        border-color var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .food-card_menu:hover {
+      transform: translateY(-8px);
+      border-color: var(--ember-dim);
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.5),
+        var(--glow-md),
+        inset 0 1px 0 rgba(232, 93, 4, 0.15);
+    }
+
+
+    .card_menu-image {
+      width: 100%;
+      height: 160px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .card_menu-img-inner {
+      width: 100%; height: 100%;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .food-card_menu:hover .card_menu-img-inner {
+      transform: scale(1.08);
+    }
+
+ 
+    .img-jollof   { 
+      background-image: url('images/party_jollof.jpg');
+      background-repeat: no-no-repeat;
+      background-size: cover;
+      background-position: center;
+      }
+   .img-egusi  { background-image: url('images/pounded_yam.jpg');
+     background-repeat: no-no-repeat;
+      background-size: cover;
+      background-position: center; }
+    .img-suya     { background-image: url('images/beef_suya.jpg');
+     background-repeat: no-no-repeat;
+      background-size: cover;
+      background-position: center;  }
+    .img-goatmeat{background-image: url('images/goat_meat.jpg');
+     background-repeat: no-no-repeat;
+      background-size: cover;
+      background-position: center;}
+    .img-fishchips{ background-image: url('images/beer.jpg');
+     background-repeat: no-no-repeat;
+      background-size: cover;
+      background-position: center;  }
+    .img-fulleng  { background-image: url('images/eng_breakfast.jpg');
+     background-repeat: no-no-repeat;
+      background-size: cover;
+      background-position: center;  }
+    .img-shepherd { background-image: url('images/sheperd_pie.jpg');
+     background-repeat: no-no-repeat;
+      background-size: cover;
+      background-position: center;  }
+    .img-pepper   { background-image: url('');
+     background-repeat: no-no-repeat;
+      background-size: cover;
+      background-position: center;  }
+    .img-ofada    { background-image: url('images/ofada_rice.jpg');
+     background-repeat: no-no-repeat;
+      background-size: cover;
+      background-position: center;  }
+    .img-grillfish{ background-image: url('images/fish.jpg');
+     background-repeat: no-no-repeat;
+      background-size: cover;
+      background-position: center;  }
+    .img-rumpsteak{ background-image: url('images/steak.jpg');
+     background-repeat: no-no-repeat;
+      background-size: cover;
+      background-position: center;  }
+    .img-chops    { background-image: url('images/pork.jpg');
+     background-repeat: no-no-repeat;
+      background-size: cover;
+      background-position: center;  }
+    .img-chinchin { background-image: url('images/chin_chin.jpg');
+     background-repeat: no-no-repeat;
+      background-size: cover;
+      background-position: center;  }
+    .img-pudding  { background-image: url('images/pudding.jpg');
+     background-repeat: no-no-repeat;
+      background-size: cover;
+      background-position: center;  }
+    .img-puffpuff { background-image: url('images/puff.jpg');
+     background-repeat: no-no-repeat;
+      background-size: cover;
+      background-position: center;  }
+    .img-scones   { background-image: url('images/scones.jpg');
+     background-repeat: no-no-repeat;
+      background-size: cover;
+      background-position: center;  }
+
+   
+    .card_menu-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7) 100%);
+      z-index: 1;
+    }
+
+    .card_menu-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(8, 8, 8, 0.75);
+      backdrop-filter: blur(3px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      opacity: 0;
+      transition: opacity var(--transition);
+      z-index: 10;
+    }
+    .food-card_menu:hover .card_menu-overlay { opacity: 1; }
+
+    .btn-add-basket {
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: linear-gradient(135deg, var(--ember-hot), var(--ember-core));
+      border: none;
+      border-radius: 50px;
+      padding: 10px 24px;
+      cursor: pointer;
+      box-shadow: var(--glow-md);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn-add-basket:hover {
+      transform: scale(1.06);
+      box-shadow: var(--glow-lg);
+    }
+    .btn-view-detail {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-bottom: 1px solid var(--text-muted);
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .btn-view-detail:hover {
+      color: var(--ember-hot);
+      border-color: var(--ember-hot);
+    }
+
+    .card_menu-body {
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card_menu-origin {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ember-core);
+      margin-bottom: 6px;
+    }
+    .card_menu-title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .card_menu-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .card_menu-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--black-border);
+    }
+    .card_menu-price {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      letter-spacing: 0.06em;
+      color: var(--ember-bright);
+      text-shadow: 0 0 8px rgba(255, 186, 8, 0.3);
+    }
+    .card_menu-heat {
+      display: flex;
+      gap: 3px;
+    }
+    .heat-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--ember-core);
+    }
+    .heat-dot.off { background: var(--black-border); }
+
+ 
+    .basket-sidebar {
+      position: sticky;
+      top: 88px;
+      height: fit-content;
+      max-height: calc(100vh - 110px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--ember-dim) transparent;
+      background: var(--black-card_menu);
+      border: 1px solid var(--black-border);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      box-shadow:
+        0 0 0 1px rgba(232, 93, 4, 0.08),
+        inset 0 1px 0 rgba(232, 93, 4, 0.06),
+        0 32px 80px rgba(0,0,0,0.4);
+    }
+   
+    .basket-sidebar::before {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: -2px;
+      width: 3px;
+      height: 60%;
+      background: linear-gradient(to bottom, transparent, var(--ember-core), transparent);
+      border-radius: 2px;
+      box-shadow: var(--glow-sm);
+      opacity: 0.6;
+    }
+
+    .basket-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--black-border);
+    }
+    .basket-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      color: var(--text-primary);
+    }
+    .basket-count {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--black);
+      background: var(--ember-core);
+      border-radius: 50px;
+      padding: 3px 10px;
+      letter-spacing: 0.06em;
+    }
+
+    .basket-items {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .basket-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: var(--black-lift);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--black-border);
+      transition: border-color var(--transition);
+    }
+    .basket-item:hover {
+      border-color: var(--ember-dim);
+    }
+
+    .basket-item-img {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+    }
+
+    .basket-item-info { flex: 1; min-width: 0; }
+    .basket-item-name {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .basket-item-qty {
+      font-size: 0.72rem;
+      color: var(--ember-core);
+      margin-top: 2px;
+    }
+    .basket-item-price {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      color: var(--ember-bright);
+      flex-shrink: 0;
+    }
+
+    .basket-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--black-border), transparent);
+      margin: 8px 0;
+    }
+
+    .basket-subtotals {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .subtotal-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+    .subtotal-row.total {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      padding-top: 10px;
+      border-top: 1px solid var(--black-border);
+      margin-top: 4px;
+    }
+    .subtotal-row.total .amount {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      letter-spacing: 0.06em;
+      color: var(--ember-bright);
+      text-shadow: 0 0 8px rgba(255, 186, 8, 0.25);
+    }
+
+    .btn-checkout {
+      display: block;
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: linear-gradient(135deg, var(--ember-hot) 0%, var(--ember-core) 100%);
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 20px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 4px 20px rgba(232, 93, 4, 0.4),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-checkout::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--ember-bright) 0%, var(--ember-hot) 100%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .btn-checkout:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 8px 30px rgba(232, 93, 4, 0.55),
+        inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .btn-checkout:hover::before { opacity: 1; }
+    .btn-checkout span { position: relative; z-index: 1; }
+
+    .basket-note {
+      margin-top: 12px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .basket-note strong { color: var(--ember-core); }
+
+  
+    .basket-promo {
+      background: rgba(157, 2, 8, 0.15);
+      border: 1px solid rgba(157, 2, 8, 0.3);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      margin-bottom: 16px;
+      font-size: 0.75rem;
+      color: var(--ember-hot);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .promo-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+     
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+   
+    .modal-backdrop:target {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: var(--black-card_menu);
+      border: 1px solid var(--black-border);
+      border-radius: var(--radius-lg);
+      height: 85%;
+      width: 90%;
+      max-width: 560px;
+      position: relative;
+      overflow: hidden;
+      transform: scale(0.88) translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow:
+        0 0 0 1px rgba(232, 93, 4, 0.12),
+        0 40px 120px rgba(0,0,0,0.7),
+        var(--glow-md);
+    }
+    .modal-backdrop:target .modal-box {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-img {
+      width: 100%;
+      height: 190px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .modal-img .card_menu-img-inner {
+      height: 100%;
+    }
+    .modal-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.85) 100%);
+    }
+    .modal-img-title {
+      position: absolute;
+      bottom: 20px;
+      left: 24px;
+      z-index: 2;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      color: var(--text-primary);
+      text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .modal-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .modal-tag {
+      font-size: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 50px;
+      background: rgba(232, 93, 4, 0.12);
+      border: 1px solid rgba(232, 93, 4, 0.25);
+      color: var(--ember-hot);
+    }
+    .modal-tag.heat {
+      background: rgba(157, 2, 8, 0.15);
+      border-color: rgba(157, 2, 8, 0.35);
+      color: #ff6b6b;
+    }
+
+    .modal-desc {
+      font-family: var(--font-serif);
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+
+    .modal-ingredients h4 {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .modal-ingredients ul {
+      list-style: none;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .modal-ingredients li {
+      font-size: 0.6rem;
+      color: var(--text-secondary);
+      background: var(--black-lift);
+      border: 1px solid var(--black-border);
+      border-radius: var(--radius-sm);
+      padding: 4px 12px;
+    }
+
+    .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 20px;
+      border-top: 1px solid var(--black-border);
+    }
+    .modal-price {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      letter-spacing: 0.08em;
+      color: var(--ember-bright);
+      text-shadow: 0 0 12px rgba(255, 186, 8, 0.3);
+    }
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .modal-close {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .modal-close:hover { color: var(--text-secondary); }
+
+   
+    .modal-close-x {
+      position: absolute;
+      top: 45px;
+      right: 14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid var(--black-border);
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      z-index: 10;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .modal-close-x:hover {
+      background: var(--ember-dim);
+      color: var(--text-primary);
+    }
+
+
+    .faq-section {
+      padding: 60px 40px 80px;
+      position: relative;
+    }
+    .faq-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 40px; right: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--black-border), transparent);
+    }
+
+    .faq-header {
+      margin-bottom: 32px;
+    }
+    .faq-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ember-core);
+      margin-bottom: 8px;
+    }
+    .faq-title {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      letter-spacing: 0.1em;
+      color: var(--text-primary);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 12px;
+    }
+
+    details.faq-item {
+      background: var(--black-card_menu);
+      border: 1px solid var(--black-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    details.faq-item:hover,
+    details.faq-item[open] {
+      border-color: var(--ember-dim);
+      box-shadow: var(--glow-sm);
+    }
+
+    details.faq-item summary {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      user-select: none;
+      transition: color var(--transition);
+      gap: 12px;
+    }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item[open] summary { color: var(--ember-hot); }
+
+    .faq-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid var(--black-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.8rem;
+      color: var(--ember-core);
+      background: rgba(232, 93, 4, 0.06);
+      transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+    details.faq-item[open] .faq-icon {
+      background: rgba(232, 93, 4, 0.18);
+      box-shadow: var(--glow-sm);
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      padding: 0 20px 18px;
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      font-style: italic;
+      border-top: 1px solid var(--black-border);
+      padding-top: 14px;
+    }
+
+   
+   
+    .basket-fab {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 150;
+      background: linear-gradient(135deg, var(--ember-hot), var(--ember-core));
+      border-radius: 50px;
+      padding: 14px 22px;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      box-shadow:
+        0 8px 30px rgba(232, 93, 4, 0.5),
+        0 2px 8px rgba(0,0,0,0.5);
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+   
+    @media (max-width: 1100px) {
+      :root { --basket-width: 280px; }
+      .ordering-layout { padding: 0 24px 60px; }
+      .menu-column { padding-right: 24px; }
+    }
+
+    @media (max-width: 900px) {
+      .food-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+     
+      .logo-name { font-size: 1.6rem; }
+      .delivery-badge span { display: none; }
+
+      .noble-strip { padding: 32px 20px 24px; }
+
+      .ordering-layout {
+        grid-template-columns: 1fr;
+        padding: 0 20px 100px;
+      }
+      .menu-column { padding-right: 0; }
+
+  
+      .basket-sidebar { display: none; }
+
+
+      .basket-fab { display: flex; align-items: center; gap: 10px; }
+
+      .tabs-wrapper { top: 65px; }
+
+      .faq-section { padding: 40px 20px 60px; }
+      .faq-grid { grid-template-columns: 1fr; }
+
+    
+
+      .modal-box { width: 95%; }
+    }
+
+    @media (max-width: 480px) {
+      .food-grid { grid-template-columns: 1fr; }
+      .tabs-nav { gap: 2px; }
+      .tab-label {
+        font-size: 0.7rem;
+        padding: 8px 12px;
+        letter-spacing: 0.06em;
+      }
+      .noble-title { font-size: 2.6rem; }
+    }
+
+ 
+    .ember-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ember-core);
+      background: rgba(232, 93, 4, 0.08);
+      border: 1px solid rgba(232, 93, 4, 0.2);
+      border-radius: 50px;
+      padding: 4px 12px;
+    }
+    .ember-chip::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--ember-core);
+      box-shadow: 0 0 6px rgba(232,93,4,0.7);
+    }
+
+ 
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb {
+      background: var(--ember-dim);
+      border-radius: 4px;
+    }
+
+  
+    .tab-inputs-wrapper {
+      position: absolute;
+      top: 0; left: 0;
+      opacity: 0;
+      pointer-events: none;
+      height: 0;
+      overflow: hidden;
+    }
+
+
 </style>
 <body>
 
@@ -1402,6 +2439,846 @@ footer {
 
 
 
+
+
+
+
+
+
+  
+<!-- 
+     HIDDEN MODALS — :target hack
+     IDs referenced from food-card_menu "View Details" links
+ -->
+
+<!-- Jollof Rice Detail Modal -->
+<div class="modal-backdrop" id="item-jollof">
+  <article class="modal-box" role="dialog" aria-modal="true" aria-label="Jollof Rice & Chicken Detail">
+    <a href="#" class="modal-close-x" aria-label="Close">✕</a>
+    <div class="modal-img">
+      <div class="card_menu-img-inner img-jollof"></div>
+      <h2 class="modal-img-title">JOLLOF RICE &amp; CHICKEN</h2>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tags">
+        <span class="modal-tag">🇳🇬 Nigerian</span>
+        <span class="modal-tag">Local Special</span>
+        <span class="modal-tag heat">🔥🔥 Medium Heat</span>
+        <span class="modal-tag">Party Style</span>
+      </div>
+      <p class="modal-desc">
+        The crown jewel of West African cuisine. Our Party Jollof is slow-cooked over firewood in a large pot — layered with spices. Served with a generous portion of grilled whole chicken.
+      </p>
+      <div class="modal-ingredients">
+        <h4>Key Ingredients</h4>
+        <ul>
+          <li>Long-grain Parboiled Rice</li>
+          <li>Tomato Purée</li>
+          <li>Tatashe Peppers</li>
+          <li>Onions</li>
+          <li>Bay Leaves</li>
+          <li>Seasoning Cubes</li>
+          <li>Grilled Whole Chicken</li>
+       
+       
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <span class="modal-price">₦4,500</span>
+        <div class="modal-actions">
+          <a href="#" class="modal-close">Back to Menu</a>
+          <a href="#" class="btn-add-basket">Add to Order</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<!-- Egusi Soup Modal -->
+<div class="modal-backdrop" id="item-egusi">
+  <article class="modal-box" role="dialog" aria-modal="true" aria-label="Pounded Yam & Egusi Detail">
+    <a href="#" class="modal-close-x">✕</a>
+    <div class="modal-img">
+      <div class="card_menu-img-inner img-egusi"></div>
+      <h2 class="modal-img-title">POUNDED YAM &amp; EGUSI</h2>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tags">
+        <span class="modal-tag">🇳🇬 Nigerian</span>
+        <span class="modal-tag">Hearty</span>
+        <span class="modal-tag heat">🔥 Mild Heat</span>
+      </div>
+      <p class="modal-desc">
+        Silky, smooth pounded yam paired with our rich Egusi soup — ground melon seeds cooked with leafy greens, assorted meat, and smoked fish in a palm oil base. A meal that feeds the soul.
+      </p>
+      <div class="modal-ingredients">
+        <h4>Key Ingredients</h4>
+        <ul>
+          <li>White Yam</li>
+          <li>Ground Egusi (Melon Seeds)</li>
+          <li>Palm Oil</li>
+          <li>Uziza Leaves</li>
+          <li>Assorted Beef</li>
+          <li>Stockfish</li>
+          <li>Crayfish</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <span class="modal-price">₦5,800</span>
+        <div class="modal-actions">
+          <a href="#" class="modal-close">Back to Menu</a>
+          <a href="#" class="btn-add-basket">Add to Order</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<!-- Goat Meat Pepper Soup -->
+<div class="modal-backdrop" id="item-goatmeat">
+  <article class="modal-box" role="dialog" aria-modal="true" aria-label="Goat Meat Pepper Soup Detail">
+    <a href="#" class="modal-close-x">✕</a>
+    
+    <div class="modal-img">
+      <div class="card_menu-img-inner img-goatmeat"></div>
+      <h2 class="modal-img-title">GOAT MEAT PEPPER SOUP</h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="modal-tags">
+        <span class="modal-tag">🇳🇬 Nigerian</span>
+        <span class="modal-tag">Spicy</span>
+        <span class="modal-tag">Traditional</span>
+      </div>
+
+      <p class="modal-desc">
+        A rich and aromatic Nigerian delicacy prepared with tender goat meat simmered in a flavorful broth infused with traditional pepper soup spices, fresh herbs, and chili peppers. Served hot and perfect for warming the soul.
+      </p>
+
+      <div class="modal-ingredients">
+        <h4>Key Ingredients</h4>
+        <ul>
+          <li>Fresh Goat Meat</li>
+          <li>Pepper Soup Spice Mix</li>
+          <li>Scotch Bonnet Peppers</li>
+          <li>Scent Leaves</li>
+          <li>Onions</li>
+          <li>Ginger</li>
+          <li>Garlic</li>
+        </ul>
+      </div>
+
+      <div class="modal-footer">
+        <span class="modal-price">₦5,500</span>
+
+        <div class="modal-actions">
+          <a href="#" class="modal-close">Back to Menu</a>
+          <a href="#" class="btn-add-basket">Add to Order</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<!-- Ofada Rice & Designer Sauce -->
+<div class="modal-backdrop" id="item-ofadarice">
+  <article class="modal-box" role="dialog" aria-modal="true" aria-label="Ofada Rice & Designer Sauce Detail">
+    <a href="#" class="modal-close-x">✕</a>
+
+    <div class="modal-img">
+      <div class="card_menu-img-inner img-ofada"></div>
+      <h2 class="modal-img-title">OFADA RICE &amp; DESIGNER SAUCE</h2>
+    </div>
+
+    <div class="modal-body">
+      <div class="modal-tags">
+        <span class="modal-tag">🇳🇬 Nigerian</span>
+        <span class="modal-tag">Traditional</span>
+        <span class="modal-tag">Flavorful</span>
+      </div>
+
+      <p class="modal-desc">
+        A beloved Nigerian classic featuring locally grown Ofada rice served with rich and spicy designer sauce. Prepared with traditional seasonings, this hearty dish delivers an unforgettable blend of smoky, savory, and spicy flavors.
+      </p>
+
+      <div class="modal-ingredients">
+        <h4>Key Ingredients</h4>
+        <ul>
+          <li>Ofada Rice</li>
+          <li>Assorted Meats</li>
+          <li>Green Bell Peppers</li>
+          <li>Scotch Bonnet Peppers</li>
+          <li>Onions</li>
+          <li>Palm Oil</li>
+          <li>Locust Beans (Iru)</li>
+        </ul>
+      </div>
+
+      <div class="modal-footer">
+        <span class="modal-price">₦6,500</span>
+
+        <div class="modal-actions">
+          <a href="#" class="modal-close">Back to Menu</a>
+          <a href="#" class="btn-add-basket">Add to Order</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+
+
+
+<!-- Fish & Chips Modal -->
+<div class="modal-backdrop" id="item-fishchips">
+  <article class="modal-box" role="dialog" aria-modal="true" aria-label="Fish & Chips Detail">
+    <a href="#" class="modal-close-x">✕</a>
+    <div class="modal-img">
+      <div class="card_menu-img-inner img-fishchips"></div>
+      <h2 class="modal-img-title">FISH &amp; CHIPS</h2>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tags">
+        <span class="modal-tag">🇬🇧 British</span>
+        <span class="modal-tag">Classic</span>
+        <span class="modal-tag">Crispy</span>
+      </div>
+      <p class="modal-desc">
+        A tribute to the British seaside. Wild-caught cod in a light, crisp beer batter served with thick-cut chunky chips, mushy peas, tartar sauce, and a wedge of lemon. Seasoned with our house malt vinegar blend.
+      </p>
+      <div class="modal-ingredients">
+        <h4>Key Ingredients</h4>
+        <ul>
+          <li>Wild-caught Cod</li>
+          <li>Beer Batter</li>
+          <li>Maris Piper Potatoes</li>
+          <li>Mushy Peas</li>
+          <li>Tartar Sauce</li>
+          <li>Malt Vinegar</li>
+          <li>Lemon</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <span class="modal-price">₦6,000</span>
+        <div class="modal-actions">
+          <a href="#" class="modal-close">Back to Menu</a>
+          <a href="#" class="btn-add-basket">Add to Order</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+
+<!-- PAGE WRAPPER -->
+<div class="page-wrapper">
+
+
+  <input type="radio" class="tab-input" name="menu-cat" id="tab-local"    checked />
+  <input type="radio" class="tab-input" name="menu-cat" id="tab-brit"           />
+  <input type="radio" class="tab-input" name="menu-cat" id="tab-grilled"        />
+  <input type="radio" class="tab-input" name="menu-cat" id="tab-desserts"       />
+
+ 
+ 
+  <section class="noble-strip" aria-label="Restaurant intro">
+    <h1 class="noble-title">WHERE THE<br /><span>HEARTH</span> MEETS<br />HERITAGE</h1>
+    <p class="noble-sub">Nigerian soul food. British comfort classics. One unforgettable table.</p>
+    <div class="noble-divider"></div>
+  </section>
+
+ 
+  <main class="ordering-layout" >
+
+   
+    <section class="menu-column" aria-label="Food menu">
+
+      <!-- STICKY CATEGORY TABS -->
+      <nav class="tabs-wrapper" aria-label="Menu categories">
+        <div class="tabs-nav" role="tablist">
+          <label class="tab-label" for="tab-local"    role="tab"> Local Specials</label>
+          <label class="tab-label" for="tab-brit"     role="tab"> British Classics</label>
+          <label class="tab-label" for="tab-grilled"  role="tab"> Grilled &amp; Suya</label>
+          <label class="tab-label" for="tab-desserts" role="tab"> Desserts</label>
+        </div>
+      </nav>
+
+   
+      <div class="menu-xection" data-cat="local" aria-label="Nigerian local specials">
+        <h2 class="section-heading">LOCAL SPECIALS</h2>
+        <p class="section-desc">Authentic Nigerian flavours, made with care and the right ingredients from home.</p>
+
+        <div class="food-grid">
+
+          <!-- card_menu: Jollof Rice -->
+          <article class="food-card_menu">
+            <div class="card_menu-image">
+              <div class="card_menu-img-inner img-jollof"></div>
+              <div class="card_menu-overlay">
+                <a href="#" class="btn-add-basket">Add to basket</a>
+                <a href="#item-jollof" class="btn-view-detail">View Details</a>
+              </div>
+            </div>
+            <div class="card_menu-body">
+              <span class="card_menu-origin">🇳🇬 Nigerian</span>
+              <h3 class="card_menu-title">Party Jollof Rice &amp; Chicken</h3>
+              <p class="card_menu-desc">Smoky firewood Jollof, slow-cooked to a rich deep red. Served with grilled chicken, fried plantain &amp; coleslaw.</p>
+              <div class="card_menu-footer">
+                <span class="card_menu-price">₦4,500</span>
+                <div class="card_menu-heat" aria-label="Medium heat">
+                  <span class="heat-dot"></span>
+                  <span class="heat-dot"></span>
+                  <span class="heat-dot off"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- card_menu: Pounded Yam & Egusi -->
+          <article class="food-card_menu">
+            <div class="card_menu-image">
+              <div class="card_menu-img-inner img-egusi"></div>
+              <div class="card_menu-overlay">
+                <a href="#" class="btn-add-basket">Add to basket</a>
+                <a href="#item-egusi" class="btn-view-detail">View Details</a>
+              </div>
+            </div>
+            <div class="card_menu-body">
+              <span class="card_menu-origin">🇳🇬 Nigerian</span>
+              <h3 class="card_menu-title">Pounded Yam &amp; Egusi Soup</h3>
+              <p class="card_menu-desc">Silky pounded yam with rich melon-seed soup, assorted meat &amp; smoked fish in a deep palm oil base.</p>
+              <div class="card_menu-footer">
+                <span class="card_menu-price">₦5,800</span>
+                <div class="card_menu-heat" aria-label="Mild heat">
+                  <span class="heat-dot"></span>
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- card_menu: Pepper Soup -->
+          <article class="food-card_menu">
+            <div class="card_menu-image">
+              <div class="card_menu-img-inner img-goatmeat"></div>
+              <div class="card_menu-overlay">
+                <a href="#" class="btn-add-basket">Add to basket</a>
+                <a href="#item-goatmeat" class="btn-view-detail">View Details</a>
+              </div>
+            </div>
+            <div class="card_menu-body">
+              <span class="card_menu-origin">🇳🇬 Nigerian</span>
+              <h3 class="card_menu-title">Goat Meat Pepper Soup</h3>
+              <p class="card_menu-desc">Fiery, aromatic broth with tender goat cuts, uziza &amp; scent leaves. A warming classic for every occasion.</p>
+              <div class="card_menu-footer">
+                <span class="card_menu-price">₦4,200</span>
+                <div class="card_menu-heat" aria-label="High heat">
+                  <span class="heat-dot"></span>
+                  <span class="heat-dot"></span>
+                  <span class="heat-dot"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- card_menu: Ofada Rice -->
+          <article class="food-card_menu">
+            <div class="card_menu-image">
+              <div class="card_menu-img-inner img-ofada"></div>
+              <div class="card_menu-overlay">
+                <a href="#" class="btn-add-basket">Add to basket</a>
+                <a href="#item-ofadarice" class="btn-view-detail">View Details</a>
+              </div>
+            </div>
+            <div class="card_menu-body">
+              <span class="card_menu-origin">🇳🇬 Nigerian</span>
+              <h3 class="card_menu-title">Ofada Rice &amp; Designer Sauce</h3>
+              <p class="card_menu-desc">Locally grown unpolished rice wrapped in fresh leaves, paired with the iconic locust-bean designer stew.</p>
+              <div class="card_menu-footer">
+                <span class="card_menu-price">₦3,800</span>
+                <div class="card_menu-heat" aria-label="Medium heat">
+                  <span class="heat-dot"></span>
+                  <span class="heat-dot"></span>
+                  <span class="heat-dot off"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- /.food-grid -->
+      </div><!-- /.menu-xection[local] -->
+
+      <!-- 
+           BRITISH CLASSICS
+       -->
+      <div class="menu-xection" data-cat="brit" aria-label="British classic dishes">
+        <h2 class="section-heading">BRITISH CLASSICS</h2>
+        <p class="section-desc">Proper British comfort food, elevated and served with pride — from the seaside to the supper table.</p>
+
+        <div class="food-grid">
+
+          <!-- Fish & Chips -->
+          <article class="food-card_menu">
+            <div class="card_menu-image">
+              <div class="card_menu-img-inner img-fishchips"></div>
+              <div class="card_menu-overlay">
+                <a href="#" class="btn-add-basket">Add to basket</a>
+                <a href="#item-fishchips" class="btn-view-detail">View Details</a>
+              </div>
+            </div>
+            <div class="card_menu-body">
+              <span class="card_menu-origin">🇬🇧 British</span>
+              <h3 class="card_menu-title">Beer-Battered Fish &amp; Chips</h3>
+              <p class="card_menu-desc">Wild-caught cod in a golden beer batter, chunky chips, mushy peas &amp; house tartar sauce.</p>
+              <div class="card_menu-footer">
+                <span class="card_menu-price">₦6,000</span>
+                <div class="card_menu-heat" aria-label="No heat">
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Full English -->
+          <article class="food-card_menu">
+            <div class="card_menu-image">
+              <div class="card_menu-img-inner img-fulleng"></div>
+              <div class="card_menu-overlay">
+                <a href="#" class="btn-add-basket">Add to basket</a>
+                <a href="#" class="btn-view-detail">View Details</a>
+              </div>
+            </div>
+            <div class="card_menu-body">
+              <span class="card_menu-origin">🇬🇧 British</span>
+              <h3 class="card_menu-title">Full English Breakfast</h3>
+              <p class="card_menu-desc">Bacon, sausages, free-range eggs, grilled tomato, baked beans, black pudding &amp; toast. The full works.</p>
+              <div class="card_menu-footer">
+                <span class="card_menu-price">₦5,200</span>
+                <div class="card_menu-heat" aria-label="No heat">
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Shepherd's Pie -->
+          <article class="food-card_menu">
+            <div class="card_menu-image">
+              <div class="card_menu-img-inner img-shepherd"></div>
+              <div class="card_menu-overlay">
+                <a href="#" class="btn-add-basket">Add to basket</a>
+                <a href="#" class="btn-view-detail">View Details</a>
+              </div>
+            </div>
+            <div class="card_menu-body">
+              <span class="card_menu-origin">🇬🇧 British</span>
+              <h3 class="card_menu-title">Shepherd's Pie</h3>
+              <p class="card_menu-desc">Slow-cooked minced lamb in a rich gravy, topped with golden, buttery mashed potato crust. Old school comfort.</p>
+              <div class="card_menu-footer">
+                <span class="card_menu-price">₦5,500</span>
+                <div class="card_menu-heat" aria-label="No heat">
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div><!-- /.menu-xection[brit] -->
+
+      <!-- 
+           GRILLED & SUYA
+       -->
+      <div class="menu-xection" data-cat="grilled" aria-label="Grilled and suya dishes">
+        <h2 class="section-heading">GRILLED &amp; SUYA</h2>
+        <p class="section-desc">Charcoal-kissed. Smoky. Spiced with Yaji. From the grill pit straight to your table.</p>
+
+        <div class="food-grid">
+
+          <!-- Suya -->
+          <article class="food-card_menu">
+            <div class="card_menu-image">
+              <div class="card_menu-img-inner img-suya"></div>
+              <div class="card_menu-overlay">
+                <a href="#" class="btn-add-basket">Add to basket</a>
+                <a href="#" class="btn-view-detail">View Details</a>
+              </div>
+            </div>
+            <div class="card_menu-body">
+              <span class="card_menu-origin">🇳🇬 Northern Nigeria</span>
+              <h3 class="card_menu-title">Beef Suya Skewers</h3>
+              <p class="card_menu-desc">Thin-cut beef marinated in Yaji spice blend, grilled over live charcoal. Served with raw onions, tomatoes &amp; extra Yaji.</p>
+              <div class="card_menu-footer">
+                <span class="card_menu-price">₦3,500</span>
+                <div class="card_menu-heat" aria-label="High heat">
+                  <span class="heat-dot"></span>
+                  <span class="heat-dot"></span>
+                  <span class="heat-dot"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Grilled Fish -->
+          <article class="food-card_menu">
+            <div class="card_menu-image">
+              <div class="card_menu-img-inner img-grillfish"></div>
+              <div class="card_menu-overlay">
+                <a href="#" class="btn-add-basket">Add to basket</a>
+                <a href="#" class="btn-view-detail">View Details</a>
+              </div>
+            </div>
+            <div class="card_menu-body">
+              <span class="card_menu-origin">🇳🇬 Coastal</span>
+              <h3 class="card_menu-title">Whole Grilled Tilapia</h3>
+              <p class="card_menu-desc">Freshwater tilapia marinated in pepper paste, herbs &amp; citrus. Grilled whole over open flame. A Lagos waterfront staple.</p>
+              <div class="card_menu-footer">
+                <span class="card_menu-price">₦4,800</span>
+                <div class="card_menu-heat" aria-label="Medium heat">
+                  <span class="heat-dot"></span>
+                  <span class="heat-dot"></span>
+                  <span class="heat-dot off"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Rump Steak -->
+          <article class="food-card_menu">
+            <div class="card_menu-image">
+              <div class="card_menu-img-inner img-rumpsteak"></div>
+              <div class="card_menu-overlay">
+                <a href="#" class="btn-add-basket">Add to basket</a>
+                <a href="#" class="btn-view-detail">View Details</a>
+              </div>
+            </div>
+            <div class="card_menu-body">
+              <span class="card_menu-origin">🇬🇧 British Grill</span>
+              <h3 class="card_menu-title">Rump Steak &amp; Chips</h3>
+              <p class="card_menu-desc">250g prime rump steak, grilled to your liking, with chunky chips, grilled tomato &amp; peppercorn sauce.</p>
+              <div class="card_menu-footer">
+                <span class="card_menu-price">₦8,500</span>
+                <div class="card_menu-heat" aria-label="No heat">
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Pork Chops -->
+          <article class="food-card_menu">
+            <div class="card_menu-image">
+              <div class="card_menu-img-inner img-chops"></div>
+              <div class="card_menu-overlay">
+                <a href="#" class="btn-add-basket">Add to basket</a>
+                <a href="#" class="btn-view-detail">View Details</a>
+              </div>
+            </div>
+            <div class="card_menu-body">
+              <span class="card_menu-origin">Fusion Grill</span>
+              <h3 class="card_menu-title">Suya-Spiced Pork Chops</h3>
+              <p class="card_menu-desc">British pork chops rubbed with traditional Yaji suya spice, grilled over charcoal. East meets West, perfectly.</p>
+              <div class="card_menu-footer">
+                <span class="card_menu-price">₦7,200</span>
+                <div class="card_menu-heat" aria-label="Medium heat">
+                  <span class="heat-dot"></span>
+                  <span class="heat-dot"></span>
+                  <span class="heat-dot off"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div><!-- /.menu-xection[grilled] -->
+
+      <!-- 
+           DESSERTS
+       -->
+      <div class="menu-xection" data-cat="desserts" aria-label="Desserts">
+        <h2 class="section-heading">DESSERTS</h2>
+        <p class="section-desc">Sweet endings from both traditions — some crispy, some silky, all irresistible.</p>
+
+        <div class="food-grid">
+
+          <!-- Chin Chin -->
+          <article class="food-card_menu">
+            <div class="card_menu-image">
+              <div class="card_menu-img-inner img-chinchin"></div>
+              <div class="card_menu-overlay">
+                <a href="#" class="btn-add-basket">Add to basket</a>
+                <a href="#" class="btn-view-detail">View Details</a>
+              </div>
+            </div>
+            <div class="card_menu-body">
+              <span class="card_menu-origin">🇳🇬 Nigerian</span>
+              <h3 class="card_menu-title">Chin Chin &amp; Coconut Drizzle</h3>
+              <p class="card_menu-desc">Crunchy deep-fried pastry bites — nutmeg &amp; coconut-spiced — served with a warm coconut cream drizzle.</p>
+              <div class="card_menu-footer">
+                <span class="card_menu-price">₦1,800</span>
+                <div class="card_menu-heat" aria-label="No heat">
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Sticky Toffee Pudding -->
+          <article class="food-card_menu">
+            <div class="card_menu-image">
+              <div class="card_menu-img-inner img-pudding"></div>
+              <div class="card_menu-overlay">
+                <a href="#" class="btn-add-basket">Add to basket</a>
+                <a href="#" class="btn-view-detail">View Details</a>
+              </div>
+            </div>
+            <div class="card_menu-body">
+              <span class="card_menu-origin">🇬🇧 British</span>
+              <h3 class="card_menu-title">Sticky Toffee Pudding</h3>
+              <p class="card_menu-desc">Moist date sponge in a warm toffee sauce, served with a scoop of vanilla bean ice cream. A British legend.</p>
+              <div class="card_menu-footer">
+                <span class="card_menu-price">₦2,500</span>
+                <div class="card_menu-heat" aria-label="No heat">
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Puff Puff -->
+          <article class="food-card_menu">
+            <div class="card_menu-image">
+              <div class="card_menu-img-inner img-puffpuff"></div>
+              <div class="card_menu-overlay">
+                <a href="#" class="btn-add-basket">Add to basket</a>
+                <a href="#" class="btn-view-detail">View Details</a>
+              </div>
+            </div>
+            <div class="card_menu-body">
+              <span class="card_menu-origin">🇳🇬 Nigerian</span>
+              <h3 class="card_menu-title">Puff Puff &amp; Custard Dip</h3>
+              <p class="card_menu-desc">Soft, airy fried dough balls, slightly sweet &amp; pillowy. Served warm with a creamy vanilla custard dipping sauce.</p>
+              <div class="card_menu-footer">
+                <span class="card_menu-price">₦1,500</span>
+                <div class="card_menu-heat" aria-label="No heat">
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Scones -->
+          <article class="food-card_menu">
+            <div class="card_menu-image">
+              <div class="card_menu-img-inner img-scones"></div>
+              <div class="card_menu-overlay">
+                <a href="#" class="btn-add-basket">Add to basket</a>
+                <a href="#" class="btn-view-detail">View Details</a>
+              </div>
+            </div>
+            <div class="card_menu-body">
+              <span class="card_menu-origin">🇬🇧 British</span>
+              <h3 class="card_menu-title">Clotted Cream Scones</h3>
+              <p class="card_menu-desc">Warm butter scones, freshly baked, served with generous clotted cream &amp; homemade strawberry jam. Pure tradition.</p>
+              <div class="card_menu-footer">
+                <span class="card_menu-price">₦2,200</span>
+                <div class="card_menu-heat" aria-label="No heat">
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                  <span class="heat-dot off"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div><!-- /.menu-xection[desserts] -->
+
+    </section><!-- /.menu-column -->
+
+    <!-- 
+         basket SIDEBAR
+     -->
+    <aside class="basket-sidebar" aria-label="Your order">
+      <div class="basket-header">
+        <h2 class="basket-title">YOUR ORDER</h2>
+        <span class="basket-count">3 items</span>
+      </div>
+
+      <!-- Promo Banner -->
+      <div class="basket-promo">
+        <span class="promo-icon">🎁</span>
+        <span>Free delivery on orders above <strong>₦10,000</strong>. You're ₦2,200 away!</span>
+      </div>
+
+      <div class="basket-items">
+
+        <!-- basket Item 1 -->
+        <div class="basket-item">
+          <div class="basket-item-img img-jollof" style="width:44px;height:44px;border-radius:8px;flex-shrink:0;"></div>
+          <div class="basket-item-info">
+            <p class="basket-item-name">Party Jollof Rice &amp; Chicken</p>
+            <p class="basket-item-qty">Qty: 1</p>
+          </div>
+          <span class="basket-item-price">₦4,500</span>
+        </div>
+
+        <!-- basket Item 2 -->
+        <div class="basket-item">
+          <div class="basket-item-img img-fishchips" style="width:44px;height:44px;border-radius:8px;flex-shrink:0;"></div>
+          <div class="basket-item-info">
+            <p class="basket-item-name">Beer-Battered Fish &amp; Chips</p>
+            <p class="basket-item-qty">Qty: 2</p>
+          </div>
+          <span class="basket-item-price">₦12,000</span>
+        </div>
+
+        <!-- basket Item 3 -->
+        <div class="basket-item">
+          <div class="basket-item-img img-suya" style="width:44px;height:44px;border-radius:8px;flex-shrink:0;"></div>
+          <div class="basket-item-info">
+            <p class="basket-item-name">Beef Suya Skewers</p>
+            <p class="basket-item-qty">Qty: 1</p>
+          </div>
+          <span class="basket-item-price">₦3,500</span>
+        </div>
+
+      </div>
+
+      <div class="basket-divider"></div>
+
+      <div class="basket-subtotals">
+        <div class="subtotal-row">
+          <span>Subtotal</span>
+          <span>₦20,000</span>
+        </div>
+        <div class="subtotal-row">
+          <span>Delivery</span>
+          <span>₦800</span>
+        </div>
+        <div class="subtotal-row">
+          <span>Service Fee</span>
+          <span>₦200</span>
+        </div>
+        <div class="subtotal-row total">
+          <span>Total</span>
+          <span class="amount">₦21,000</span>
+        </div>
+      </div>
+
+      <a href="#" class="btn-checkout"><span>Proceed to Checkout </span></a>
+
+      <p class="basket-note">
+        Estimated delivery: <strong>30–45 mins</strong><br />
+        Secure payment via Paystack &amp; Bank Transfer
+      </p>
+    </aside>
+
+  </main>
+
+  <!-- 
+       FAQ SECTION — <details> Accordion
+   -->
+  <section class="faq-section" aria-label="Frequently asked questions">
+    <div class="faq-header">
+      <p class="faq-label">Got Questions?</p>
+      <h2 class="faq-title">NEED TO KNOW</h2>
+    </div>
+
+    <div class="faq-grid" role="list">
+
+      <details class="faq-item" role="listitem">
+        <summary>
+          Do you deliver across Lagos?
+          <span  class="material-icons" class="faq-icon">add</span>
+        </summary>
+        <div class="faq-answer">
+          Yes! We currently deliver across Lagos Island, Victoria Island, Lekki (Phase 1 &amp; 2), Ikoyi, Ajah, Lagos Mainland, Surulere, Yaba, and Ikeja. We're expanding rapidly — enter your address at checkout to confirm coverage.
+        </div>
+      </details>
+
+      <details class="faq-item" role="listitem">
+        <summary>
+          How do you package liquid soups &amp; stews?
+          <span  class="material-icons" class="faq-icon">add</span>
+        </summary>
+        <div class="faq-answer">
+          All soups — including Egusi, Pepper Soup, and Stews — are sealed in leak-proof, double-walled containers with heat-lock lids. They're placed upright in insulated bags to maintain temperature and prevent spills during transit.
+        </div>
+      </details>
+
+      <details class="faq-item" role="listitem">
+        <summary>
+          What are your estimated delivery times?
+          <span  class="material-icons" class="faq-icon">add</span>
+        </summary>
+        <div class="faq-answer">
+          Standard delivery is typically 30–45 minutes for nearby areas (VI, Lekki Phase 1, Ikoyi). Mainland deliveries typically run 45–60 minutes. Peak hours (12pm–2pm, 7pm–9pm) may add 15–20 minutes. We'll notify you in real time.
+        </div>
+      </details>
+
+      <details class="faq-item" role="listitem">
+        <summary>
+          Can I customise spice levels?
+          <span  class="material-icons" class="faq-icon">add</span>
+        </summary>
+        <div class="faq-answer">
+          Absolutely. Use the "Special Instructions" field at checkout. We can adjust spice levels for most dishes. Note: some dishes like Pepper Soup and Suya have a minimum heat level to preserve their authentic character.
+        </div>
+      </details>
+
+      <details class="faq-item" role="listitem">
+        <summary>
+          Do you cater for large events or group orders?
+          <span  class="material-icons" class="faq-icon">add</span>
+        </summary>
+        <div class="faq-answer">
+          Yes — we offer party packs and event catering for groups of 20+. Contact us at least 48 hours in advance via our Catering Enquiry form. Special rates apply for bulk orders of Jollof Rice, Suya, and selected British platters.
+        </div>
+      </details>
+
+      <details class="faq-item" role="listitem">
+        <summary>
+          Are there vegetarian or vegan options?
+          <span  class="material-icons" class="faq-icon">add</span>
+        </summary>
+        <div class="faq-answer">
+          Several dishes can be made vegetarian on request — including our Ofada Rice (served without meat), Egusi Soup (with tofu), and most British sides. A dedicated vegan menu is coming soon. Look for the 🌿 tag in upcoming menu updates.
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+
+
+</div><!-- /.page-wrapper -->
+
+<!-- Mobile FAB basket Button -->
+<a href="#" class="basket-fab" aria-label="View your basket">
+ View basket 
+</a>
+
+
+
+
+
+
   <div class="testimonials reveal">
     <p class="section-label" style="margin-bottom:1.5rem;">— Guest Experience —</p>
     <blockquote class="testimonial-quote">
@@ -1535,7 +3412,7 @@ footer {
         <h4>Contact</h4>
         <ul>
           <li><a href="mailto:hello@ember.dining">hello@ember.dining</a></li>
-          <li><a href="tel:+2341234567">+234 802 890</a></li>
+          <li><a href="tel:+234 802 890">+234 802 890</a></li>
           <li><a href="#">Victoria Island, Lagos</a></li>
           <li><a href="#">Mon–Sun · 6PM–12AM</a></li>
         </ul>
